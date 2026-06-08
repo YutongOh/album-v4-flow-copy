@@ -1,0 +1,27 @@
+{
+  "source": "DesignLab_Android/playgrounds",
+  "screens": [
+    "FigmaAlbumV4Screen",
+    "AlbumV4CameraCaptureScreen"
+  ],
+  "navigation": {
+    "albumToCapture": "Effects \u6a2a\u6ed1 \u2192 More \u5706 icon \u5b8c\u5168\u9732\u51fa \u2192 \u677e\u624b \u2192 \u56de\u5f39 phase1 \u2192 \u8df3\u8f6c\u62cd\u6444\u9875",
+    "captureToAlbum": "Overlay Back \u2192 \u8fd4\u56de\u76f8\u518c\uff08Effects \u505c\u5728 phase1\uff09",
+    "navCameraRestore": "Camera \u6eda\u51fa\u540e Nav \u663e\u793a Camera icon\uff0c\u70b9\u51fb\u56de\u9876"
+  },
+  "scrollBehavior": {
+    "cameraHideThresholdPx": 88,
+    "tabPinDetection": "tabsSection.getBoundingClientRect().top < scrollViewport.top",
+    "tabPinOverlay": "\u56fa\u5b9a Tab \u4e8e scroll-wrap \u9876\u90e8\uff0c\u5217\u8868\u5185 Tab \u900f\u660e\u5360\u4f4d",
+    "navTitleWhenTabPinned": "Recent + chevron\uff08Figma 2973:23942\uff09"
+  },
+  "animations": {
+    "cameraFoldMs": 200,
+    "cameraUnfoldMs": 250,
+    "cameraEasing": "TUX_easeInOut",
+    "capturePanelMs": 300,
+    "capturePanelEasing": "TUX_easeOutStandard",
+    "captureDefaultEffect": "none \u2014 \u8fdb\u5165\u9762\u677f\u65f6\u4e0d\u81ea\u52a8\u9009\u4e2d/\u5e94\u7528\u9996\u4e2a\u7279\u6548",
+    "navTitleFadeMs": 200
+  }
+}

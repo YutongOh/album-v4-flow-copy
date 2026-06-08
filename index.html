@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=360, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Album V4 → Capture</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="phone">
+    <div class="status-bar">
+      <span class="status-time">9:41</span>
+      <span class="status-icons" aria-hidden="true"></span>
+    </div>
+
+    <div id="screen-album" class="screen active">
+      <div class="album-root">
+        <div class="album-nav">
+          <button class="nav-tap" type="button" aria-label="Close">
+            <img src="./assets/icons/album_v4_ic_close.svg" width="24" height="24" alt="" />
+          </button>
+          <div class="nav-spacer"></div>
+          <div class="nav-trailing">
+            <div id="navDrafts" class="nav-layer">
+              <div class="drafts-btn">
+                <div class="drafts-btn-inner">
+                  <span>Drafts</span>
+                  <img src="./assets/icons/album_v4_ic_drafts_lock.svg" width="16" height="16" alt="" />
+                </div>
+              </div>
+            </div>
+            <div id="navCamera" class="nav-layer">
+              <button id="navCameraBtn" class="nav-tap" type="button" aria-label="Camera">
+                <img src="./assets/icons/album_v4_ic_nav_camera.svg" width="24" height="24" alt="" />
+              </button>
+            </div>
+          </div>
+          <div id="navTitle" class="nav-title" aria-hidden="true">
+            <span>Recent</span>
+            <img src="./assets/icons/album_v4_ic_chevron_down.svg" width="16" height="16" alt="" />
+          </div>
+        </div>
+
+        <div class="album-scroll-wrap">
+          <div id="tabPinnedOverlay" class="tabs-pinned">
+            <div class="tabs-row">
+              <button class="tab-item active" type="button" data-tab="0">All</button>
+              <button class="tab-item" type="button" data-tab="1">Photos</button>
+              <button class="tab-item" type="button" data-tab="2">Videos</button>
+            </div>
+            <div class="tab-sep"></div>
+          </div>
+          <div id="albumScroll" class="album-scroll">
+            <div id="cameraHeader" class="camera-header">
+              <div id="cameraSlot" class="camera-slot">
+                <div id="cameraInner" class="camera-inner">
+                  <div class="camera-section">
+                    <div class="camera-btn-wrap">
+                      <div class="camera-btn">
+                        <img src="./assets/icons/album_v4_ic_camera.svg" width="32" height="32" alt="" />
+                        <span>Camera</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="effects-wrap">
+                <div id="effectsScroll" class="effects-scroll">
+                  <div class="effects-inner">
+                    <div class="effects-btn">
+                      <img src="./assets/icons/album_v4_ic_effects.svg" width="22" height="22" alt="" />
+                      <span>Effects</span>
+                    </div>
+                    <div class="effects-presets"><img class="effect-preset" src="./assets/images/album_v4_effect_1.png" alt="" /><img class="effect-preset" src="./assets/images/album_v4_effect_2.png" alt="" /><img class="effect-preset" src="./assets/images/album_v4_effect_ai.png" alt="" /><img class="effect-preset" src="./assets/images/album_v4_effect_4.png" alt="" /><img class="effect-preset" src="./assets/images/album_v4_effect_5.png" alt="" /></div>
+                    <div id="effectsMore" class="effects-more">
+                      <div class="effects-more-circle">
+                        <img class="effects-more-chevron" src="./assets/icons/album_v4_ic_chevron_up_small.svg" width="28" height="28" alt="" />
+                      </div>
+                      <span>More</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="recents">
+              <div class="recents-left">
+                <span>Recents</span>
+                <img src="./assets/icons/album_v4_ic_chevron_down.svg" width="16" height="16" alt="" />
+              </div>
+              <div class="storage-pill">
+                <span>5.9 MB</span>
+                <div class="eye-wrap"><img src="./assets/icons/album_v4_ic_eye.svg" width="16" height="16" alt="" /></div>
+              </div>
+            </div>
+
+            <div id="tabsSection" class="tabs-section">
+              <div class="tabs-row">
+                <button class="tab-item active" type="button" data-tab="0">All</button>
+                <button class="tab-item" type="button" data-tab="1">Photos</button>
+                <button class="tab-item" type="button" data-tab="2">Videos</button>
+              </div>
+              <div class="tab-sep"></div>
+            </div>
+
+            <div class="grid-wrap"><div class="grid-row"><div class="grid-tile"><img src="./assets/images/album_v4_tile_1.png" alt="" /><span class="tile-size">2.7 MB</span><span class="tile-duration">00:07</span></div><div class="grid-tile"><img src="./assets/images/album_v4_tile_2.png" alt="" /><span class="tile-size">2.7 MB</span></div><div class="grid-tile"><img src="./assets/images/album_v4_tile_3.png" alt="" /><span class="tile-size">2.7 MB</span></div></div><div class="grid-row"><div class="grid-tile"><img src="./assets/images/album_v4_tile_4.png" alt="" /><span class="tile-size">2.7 MB</span></div><div class="grid-tile"><img src="./assets/images/album_v4_tile_5.png" alt="" /><span class="tile-size">2.7 MB</span><span class="tile-duration">00:07</span></div><div class="grid-tile"><img src="./assets/images/album_v4_tile_6.png" alt="" /><span class="tile-size">2.7 MB</span><span class="tile-duration">00:07</span></div></div><div class="grid-row"><div class="grid-tile"><img src="./assets/images/album_v4_tile_7.png" alt="" /><span class="tile-size">2.7 MB</span></div><div class="grid-tile"><img src="./assets/images/album_v4_tile_8.png" alt="" /><span class="tile-size">2.7 MB</span></div><div class="grid-tile"><img src="./assets/images/album_v4_tile_9.png" alt="" /><span class="tile-size">2.7 MB</span><span class="tile-duration">00:07</span></div></div><div class="grid-row"><div class="grid-tile"><img src="./assets/images/album_v4_tile_10.png" alt="" /><span class="tile-size">2.7 MB</span></div><div class="grid-tile"><img src="./assets/images/album_v4_tile_11.png" alt="" /><span class="tile-size">2.7 MB</span></div><div class="grid-tile"><img src="./assets/images/album_v4_tile_12.png" alt="" /></div></div><div class="grid-row"><div class="grid-tile"><img src="./assets/images/album_v4_tile_13.png" alt="" /></div><div class="grid-tile"><img src="./assets/images/album_v4_tile_14.png" alt="" /></div><div class="grid-tile"><img src="./assets/images/album_v4_tile_16.png" alt="" /><span class="tile-size">2.7 MB</span></div></div><div class="grid-row"><div class="grid-tile"><img src="./assets/images/album_v4_tile_17.png" alt="" /><span class="tile-size">2.7 MB</span></div><div class="grid-tile"><img src="./assets/images/album_v4_tile_18.png" alt="" /><span class="tile-size">2.7 MB</span></div><div class="grid-tile"><img src="./assets/images/album_v4_tile_15.png" alt="" /></div></div></div>
+          </div>
+        </div>
+
+        <div class="select-bar">
+          <div class="select-row">
+            <div class="checkbox-outer"><div class="checkbox-inner"></div></div>
+            <span>Select multiple</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="screen-capture" class="screen">
+      <div class="capture-root">
+        <div id="capPreview" class="cap-preview">
+          <img src="./assets/images/capture_preview_bg.png" alt="" />
+        </div>
+        <div class="cap-overlay">
+          <div class="cap-nav">
+            <button id="capBack" class="cap-back" type="button">
+              <img src="./assets/icons/capture_overlay_back.svg" alt="Back" />
+            </button>
+          </div>
+          <div id="capMusic" class="cap-music">
+            <div class="cap-music-main">
+              <img src="./assets/icons/capture_overlay_music.svg" alt="" />
+              <span>Fly me to the moon an</span>
+            </div>
+            <div class="cap-music-split"></div>
+            <button id="capMusicClose" class="cap-music-close" type="button">
+              <img src="./assets/icons/capture_overlay_sound_close.svg" alt="" />
+            </button>
+          </div>
+          <div class="cap-tool">
+            <button id="capFlip" type="button"><img src="./assets/icons/capture_overlay_flip.svg" alt="Flip" /></button>
+            <span>Flip</span>
+          </div>
+        </div>
+        <div id="capPanel" class="cap-panel">
+          <div class="cap-panel-inner">
+            <div class="cap-save-row">
+              <button class="cap-save" type="button">
+                <img src="./assets/icons/capture_panel_save.svg" alt="" />Save
+              </button>
+            </div>
+            <div class="cap-panel-body">
+              <div class="cap-tabbar">
+                <div class="cap-tab-none"><img src="./assets/icons/capture_panel_tab_none.svg" alt="None" /></div>
+                <div class="cap-tab-scroll-wrap">
+                  <div id="capTabScroll" class="cap-tab-scroll">
+                    <div class="cap-tab-fav"><img src="./assets/icons/capture_panel_favorites.svg" alt="" /></div>
+                    <button class="cap-tab active" type="button" data-tab="0"><span class="cap-tab-block"><span class="cap-tab-top"></span><span class="cap-tab-body"><span>Trending</span><span class="cap-tab-ind"></span></span></span></button><button class="cap-tab" type="button" data-tab="1">New</button><button class="cap-tab" type="button" data-tab="2">Tool</button><button class="cap-tab" type="button" data-tab="3">Create</button><button class="cap-tab" type="button" data-tab="4">Hot</button><button class="cap-tab" type="button" data-tab="5">Hot</button><button class="cap-tab" type="button" data-tab="6">Hot</button><button class="cap-tab" type="button" data-tab="7">Hot</button><button class="cap-tab" type="button" data-tab="8">Hot</button><button class="cap-tab" type="button" data-tab="9">Hot</button><button class="cap-tab" type="button" data-tab="10">Hot</button>
+                  </div>
+                </div>
+              </div>
+              <div id="capGrid" class="cap-grid"><div class="cap-grid-row"><button class="cap-effect" type="button" data-i="0"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_1.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button><button class="cap-effect" type="button" data-i="1"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_2.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button><button class="cap-effect" type="button" data-i="2"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_3.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button><button class="cap-effect" type="button" data-i="3"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_4.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button></div><div class="cap-grid-row"><button class="cap-effect" type="button" data-i="4"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_5.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button><button class="cap-effect" type="button" data-i="5"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_6.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button><button class="cap-effect" type="button" data-i="6"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_7.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button><button class="cap-effect" type="button" data-i="7"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_8.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button></div><div class="cap-grid-row"><button class="cap-effect" type="button" data-i="8"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_9.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button><button class="cap-effect" type="button" data-i="9"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_10.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button><button class="cap-effect" type="button" data-i="10"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_11.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button><button class="cap-effect" type="button" data-i="11"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_12.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button></div><div class="cap-grid-row last"><button class="cap-effect" type="button" data-i="12"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_13.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button><button class="cap-effect" type="button" data-i="13"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_14.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button><button class="cap-effect" type="button" data-i="14"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_15.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button><button class="cap-effect" type="button" data-i="15"><div class="cap-effect-inner"><img class="cap-effect-thumb" src="./assets/images/capture_panel_effect_16.png" alt="" /><img class="cap-effect-loading" src="./assets/icons/capture_panel_loading.svg" alt="" /></div></button></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>
