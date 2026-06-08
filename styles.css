@@ -246,6 +246,7 @@ html, body {
 .effects-btn {
   width: 64px; height: 64px;
   margin-right: 10px;
+  padding: 0;
   border-radius: 12px;
   border: 0.4px solid var(--shape-n4);
   background:
@@ -258,6 +259,7 @@ html, body {
   z-index: 2;
   color: var(--text-secondary);
   font-size: 14px; line-height: 18px; font-weight: 600;
+  cursor: pointer;
 }
 .effects-presets-wrap {
   flex: 1;
