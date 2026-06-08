@@ -149,6 +149,16 @@ function setupAlbumScroll() {
   syncTabPinFromScroll();
 }
 
+function setupEffectsPresetsScroll() {
+  const el = els.effectsPresetsScroll;
+  if (!el) return;
+  const sync = () => {
+    el.classList.toggle('is-scrolled', el.scrollLeft > 0.5);
+  };
+  el.addEventListener('scroll', sync, { passive: true });
+  sync();
+}
+
 function setupAlbumTabs() {
   document.querySelectorAll('.tab-item').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -244,5 +254,6 @@ document.getElementById('navCameraBtn').addEventListener('click', () => {
 applyNavVisuals(0, false);
 setupScrollDebug();
 setupAlbumScroll();
+setupEffectsPresetsScroll();
 setupAlbumTabs();
 initCapture();

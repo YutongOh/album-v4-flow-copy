@@ -4,13 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=360, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Album V4 → Capture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
   <div class="phone">
     <div class="status-bar">
-      <span class="status-time">9:41</span>
-      <span class="status-icons" aria-hidden="true"></span>
+      <div class="status-time-wrap">
+        <span class="status-time">9:41</span>
+      </div>
+      <div class="status-icons" aria-hidden="true">
+        <div class="status-network">
+          <img class="status-wifi" src="./assets/icons/status_wifi.svg" width="16" height="16" alt="" />
+          <img class="status-signal" src="./assets/icons/status_signal.svg" width="16" height="16" alt="" />
+        </div>
+        <img class="status-battery" src="./assets/icons/status_battery.svg" width="16" height="16" alt="" />
+      </div>
     </div>
 
     <div id="screen-album" class="screen active">
@@ -69,8 +80,9 @@
                   <img src="./assets/icons/album_v4_ic_effects.svg" width="22" height="22" alt="" />
                   <span>Effects</span>
                 </div>
-                <div id="effectsPresetsScroll" class="effects-presets-scroll">
-                  <div class="effects-presets">
+                <div class="effects-presets-wrap">
+                  <div id="effectsPresetsScroll" class="effects-presets-scroll">
+                    <div class="effects-presets">
                     <img class="effect-preset" src="./assets/images/album_v4_effect_1.png" alt="" />
                     <img class="effect-preset" src="./assets/images/album_v4_effect_2.png" alt="" />
                     <img class="effect-preset" src="./assets/images/album_v4_effect_ai.png" alt="" />
@@ -83,6 +95,7 @@
                     <img class="effect-preset" src="./assets/images/album_v4_effect_5.png" alt="" />
                     <img class="effect-preset" src="./assets/images/album_v4_effect_1.png" alt="" />
                     <img class="effect-preset" src="./assets/images/album_v4_effect_2.png" alt="" />
+                    </div>
                   </div>
                 </div>
               </div>
