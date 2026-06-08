@@ -12,9 +12,6 @@ const D = {
   easeOutStandard: 'cubic-bezier(0.33, 0.86, 0.2, 1)',
   navDraftsSlide: 32,
   navCameraSlide: 44,
-  moreTile: 64,
-  moreCircle: 28,
-  pagePadH: 16,
 };
 
 const els = {
@@ -29,8 +26,7 @@ const els = {
   navTitle: document.getElementById('navTitle'),
   tabsSection: document.getElementById('tabsSection'),
   tabPinnedOverlay: document.getElementById('tabPinnedOverlay'),
-  effectsScroll: document.getElementById('effectsScroll'),
-  effectsMore: document.getElementById('effectsMore'),
+  effectsPresetsScroll: document.getElementById('effectsPresetsScroll'),
   capPanel: document.getElementById('capPanel'),
   capPreview: document.getElementById('capPreview'),
   capGrid: document.getElementById('capGrid'),
@@ -43,30 +39,10 @@ let selectedAlbumTab = 0;
 let selectedCapTab = 0;
 let selectedCapEffect = -1;
 let flipped = false;
-let navigatingToCapture = false;
 let navAnimating = false;
 let scrollDebugEl = null;
 
 function clamp(v, lo = 0, hi = 1) { return Math.min(hi, Math.max(lo, v)); }
-
-function waitForScrollEnd(el, cb) {
-  if ('onscrollend' in el) {
-    el.addEventListener('scrollend', () => cb(), { once: true });
-    return;
-  }
-  let last = el.scrollLeft;
-  let stable = 0;
-  (function poll() {
-    if (el.scrollLeft === last) {
-      stable += 1;
-      if (stable >= 4) { cb(); return; }
-    } else {
-      stable = 0;
-      last = el.scrollLeft;
-    }
-    requestAnimationFrame(poll);
-  })();
-}
 
 function navFrame(t) {
   t = clamp(t);
@@ -135,117 +111,6 @@ function setTabPinned(pinned) {
 
 function syncTabPinFromScroll() {
   setTabPinned(isTabPinned());
-}
-
-function effectsLimits() {
-  const el = els.effectsScroll;
-  const max = el.scrollWidth - el.clientWidth;
-  if (max <= 0) return null;
-  const phase1 = Math.max(0, max - D.moreTile);
-  if (max <= phase1) return null;
-  return { phase1, phase2: max };
-}
-
-function iconRevealThreshold(limits) {
-  const iconInset = (D.moreTile - D.moreCircle) / 2;
-  const reveal = Math.round(iconInset + D.moreCircle - D.pagePadH);
-  return limits.phase1 + Math.max(0, reveal);
-}
-
-function isMoreIconFullyRevealed(scrollPx, limits) {
-  return scrollPx >= iconRevealThreshold(limits);
-}
-
-function onEffectsScrollSettled(scrollPx, limits, allowPhase2, iconRevealedThisGesture) {
-  const peak = scrollPx;
-  const revealed = iconRevealedThisGesture || isMoreIconFullyRevealed(peak, limits);
-  if (revealed && allowPhase2) {
-    snapEffectsAndNavigate(limits);
-    return;
-  }
-  if (scrollPx > limits.phase1) {
-    els.effectsScroll.scrollTo({ left: limits.phase1, behavior: 'smooth' });
-  }
-}
-
-function snapEffectsAndNavigate(limits) {
-  if (navigatingToCapture) return;
-  navigatingToCapture = true;
-  els.effectsScroll.scrollTo({ left: limits.phase1, behavior: 'smooth' });
-  waitForScrollEnd(els.effectsScroll, () => {
-    openCapture();
-    navigatingToCapture = false;
-  });
-}
-
-function setupEffectsScroll() {
-  const el = els.effectsScroll;
-  let inGesture = false;
-  let gestureAllowPhase2 = false;
-  let gesturePeak = 0;
-  let iconRevealedThisGesture = false;
-  let settleTimer = null;
-
-  const beginGesture = () => {
-    const limits = effectsLimits();
-    if (!limits) return;
-    inGesture = true;
-    gestureAllowPhase2 = el.scrollLeft >= limits.phase1 - 1;
-    gesturePeak = el.scrollLeft;
-    iconRevealedThisGesture = false;
-  };
-
-  const trackGesture = () => {
-    const limits = effectsLimits();
-    if (!limits) return;
-    const value = el.scrollLeft;
-    if (!inGesture) beginGesture();
-    if (value >= limits.phase1 - 1) gestureAllowPhase2 = true;
-    gesturePeak = Math.max(gesturePeak, value);
-    if (gestureAllowPhase2 && isMoreIconFullyRevealed(value, limits)) {
-      iconRevealedThisGesture = true;
-    }
-    if (value > limits.phase1 && !gestureAllowPhase2) {
-      el.scrollLeft = limits.phase1;
-    }
-  };
-
-  const endGesture = () => {
-    if (!inGesture) return;
-    inGesture = false;
-    clearTimeout(settleTimer);
-    const limits = effectsLimits();
-    if (!limits) return;
-    const value = el.scrollLeft;
-    const peak = Math.max(value, gesturePeak);
-    const allow = gestureAllowPhase2;
-    const revealed = iconRevealedThisGesture;
-    gestureAllowPhase2 = false;
-    gesturePeak = 0;
-    iconRevealedThisGesture = false;
-    onEffectsScrollSettled(peak, limits, allow, revealed);
-  };
-
-  el.addEventListener('scroll', () => {
-    trackGesture();
-    clearTimeout(settleTimer);
-    settleTimer = setTimeout(endGesture, 120);
-  }, { passive: true });
-
-  el.addEventListener('pointerdown', (e) => {
-    if (e.pointerType === 'mouse' && e.button !== 0) return;
-    beginGesture();
-    if (el.setPointerCapture) el.setPointerCapture(e.pointerId);
-  });
-  const releasePointer = (e) => {
-    if (el.releasePointerCapture && el.hasPointerCapture?.(e.pointerId)) {
-      el.releasePointerCapture(e.pointerId);
-    }
-    endGesture();
-  };
-  el.addEventListener('pointerup', releasePointer);
-  el.addEventListener('pointercancel', releasePointer);
-  el.addEventListener('touchend', endGesture, { passive: true });
 }
 
 function isListAtTop() {
@@ -352,10 +217,6 @@ function openCapture() {
 function closeCapture() {
   els.capture.classList.remove('active');
   els.album.classList.add('active');
-  const limits = effectsLimits();
-  if (limits) {
-    els.effectsScroll.scrollLeft = limits.phase1;
-  }
 }
 
 function initCapture() {
@@ -383,6 +244,5 @@ document.getElementById('navCameraBtn').addEventListener('click', () => {
 applyNavVisuals(0, false);
 setupScrollDebug();
 setupAlbumScroll();
-setupEffectsScroll();
 setupAlbumTabs();
 initCapture();
